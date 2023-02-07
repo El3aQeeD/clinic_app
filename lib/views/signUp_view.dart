@@ -153,10 +153,13 @@ class SignUp extends StatelessWidget {
   Widget footerText(){
     return  Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text("Joined us before?" , style: TextStyle(color: Colors.grey),),
-          SizedBox(width: 8,),
-          Text("Login", style: TextStyle(color: MyColors.darkBlue),)
+        children:  [
+          const Text("Joined us before?" , style: TextStyle(color: Colors.grey),),
+          TextButton(onPressed: (){
+            print("u should navigate to login screen here");
+          },
+              child: const Text("Login", style: TextStyle(color: MyColors.darkBlue),)
+          ),
         ],
 
     );
@@ -190,7 +193,7 @@ class SignUp extends StatelessWidget {
                 ),
                 button(),
                 const SizedBox(
-                  height: 15,
+                  height: 8,
                 ),
                 footerText(),
 
