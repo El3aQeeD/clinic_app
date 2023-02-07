@@ -1,30 +1,24 @@
+import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:flutter/material.dart';
-Widget customTextFiled({required String hintText,required Widget label,required TextEditingController textcontroller}){
+Widget customTextFiled({required String hintText,required Widget label,required TextEditingController textcontroller ,required String? validatorFunc(dynamic)?  }){
 
   return TextFormField(
-    style: TextStyle(color: Colors.black),
-    validator: (val){
-      if(val!.length<4 && val!.isNotEmpty)
-      {
-        return "Input less than 4 character";
-      }
-      if(val!.isEmpty){
-        return "Input can not be empty";
-      }
-    } ,
+    style: const TextStyle(color: Colors.black),
+    validator: validatorFunc ,
     controller: textcontroller ,
     decoration: InputDecoration(
       label: label,
-      labelStyle: TextStyle(fontSize: 18,color: Colors.black),
+      labelStyle: const TextStyle(fontSize: 18,color: Colors.black),
       hintText: hintText,
-      hintStyle: TextStyle(color: Colors.black),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.lightBlue, width: 3.0),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+      hintStyle: const TextStyle(color: Colors.grey),
+
+      border: const UnderlineInputBorder(
+        borderSide: BorderSide(
+            width: 3, color: MyColors.darkBlue),
       ),
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(color: Colors.red,width: 10)
+      enabledBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(
+            width: 3, color: Colors.grey),
       ),
     ),
   );
