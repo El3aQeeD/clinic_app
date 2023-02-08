@@ -1,5 +1,6 @@
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
+import 'package:clinic_app/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
@@ -188,7 +189,7 @@ class SignUp extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                button(),
+                InkWell(onTap: () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: button()),
                 const SizedBox(
                   height: 15,
                 ),
