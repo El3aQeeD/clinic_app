@@ -1,8 +1,15 @@
+import 'package:clinic_app/bloc/login_cubit/login_logic.dart';
+import 'package:clinic_app/bloc/login_cubit/login_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
+import 'package:clinic_app/repositories/user_data_repo/user_data_api.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatelessWidget {
+
+  bool isLoading=false;
+
   GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
   GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
   TextEditingController emailController=TextEditingController();
@@ -67,7 +74,8 @@ class Login extends StatelessWidget {
 
     );
   }
-  Widget button(String ButtonTxt){
+
+  Widget button(String ButtonTxt , LoginCubit obj){
     return Center(
       child: Container(
         decoration: const BoxDecoration(
@@ -76,12 +84,16 @@ class Login extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 110,vertical: 5),
-          child: MaterialButton(onPressed: (){
+          child: MaterialButton(onPressed: ()async{
             if(formStateEmail.currentState!.validate()
                 &&formStatePassword.currentState!.validate()
             )
             {
-              print("innnnnn");
+              var response = await UserDataApi().getUser(email: emailController.text, password: passwordController.text);
+                //obj.checkLoginState(email: emailController.text, password: passwordController.text);
+
+              print("in");
+              print(response);
             }
             else
             {
@@ -94,43 +106,72 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child:SafeArea(
-            child:Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                imageSection(),
-                const SizedBox(
-                  height: 20,
-                ),
-                loginText('Login'),
-                const SizedBox(
-                  height: 20,
-                ),
 
-                formEmail(),
-                formPassword(),
+    var obj =LoginCubit.getObj(context);
 
-                const SizedBox(
-                  height: 10,
-                ),
-                button("Login"),
-                const SizedBox(
-                  height: 15,
-                ),
+    return
+       BlocConsumer<LoginCubit,LoginState>(
+        listener: (context,state){
+        if(state is LoginLoading){
+          print("loading...");
+          isLoading=true;
+
+        }
+        else if(state is LoginSuccess)
+        {
+          isLoading=false;
+          print("success");
+        }
+        else if(state is LoginFailure)
+        {
+          isLoading=false;
+          emailController.text="";
+          passwordController.text="";
+          print("bad");
+        }
+      },
+        builder: (context,state)=> Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child:SafeArea(
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    imageSection(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    loginText('Login'),
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    formEmail(),
+                    formPassword(),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    button("Login",obj),
+                    const SizedBox(
+                      height: 15,
+                    ),
 
 
-              ],
-            ) ,
-          ) ,
+                  ],
+                ) ,
+              ) ,
+            ),
+          ),
         ),
-      ),
+
     );
   }
 }
