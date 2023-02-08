@@ -15,12 +15,12 @@ class UserData {
         this.userTypeId});
 
   UserData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    email = json['email'];
-    password = json['password'];
-    phone = json['phone'];
-    userTypeId = json['user_type_id'];
+    id = json['id'].toString();
+    name = json['name'].toString();
+    email = json['email'].toString();
+    password = json['password'].toString();
+    phone = json['phone'].toString();
+    userTypeId = json['user_type_id'].toString();
   }
 
   Map<String, dynamic> toJson() {

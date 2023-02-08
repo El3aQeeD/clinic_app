@@ -8,12 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatelessWidget {
 
-  bool isLoading=false;
 
   GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
   GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
   TextEditingController emailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
+
+
   Widget imageSection(){
     return  SizedBox(
       width: double.infinity,
@@ -75,7 +76,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget button(String ButtonTxt , LoginCubit obj){
+  Widget button(String ButtonTxt ,LoginCubit obj){
     return Center(
       child: Container(
         decoration: const BoxDecoration(
@@ -85,19 +86,19 @@ class Login extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 110,vertical: 5),
           child: MaterialButton(onPressed: ()async{
+            //var response = await UserDataApi().getUser(email: emailController.text, password: passwordController.text);
             if(formStateEmail.currentState!.validate()
                 &&formStatePassword.currentState!.validate()
             )
             {
-              var response = await UserDataApi().getUser(email: emailController.text, password: passwordController.text);
-                //obj.checkLoginState(email: emailController.text, password: passwordController.text);
+
+                obj.checkLoginState(email: emailController.text, password: passwordController.text);
 
               print("in");
-              print(response);
             }
             else
             {
-              print("error");
+              //print("error");
             }
           },
             child: Text(ButtonTxt ,style: TextStyle(color: Colors.white,fontSize: 16,)),
@@ -112,30 +113,32 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var obj =LoginCubit.getObj(context);
+    var obj =LoginCubit(userDataRepository: UserDataApi()).getObj(context);
+
 
     return
        BlocConsumer<LoginCubit,LoginState>(
         listener: (context,state){
         if(state is LoginLoading){
           print("loading...");
-          isLoading=true;
+          
 
         }
         else if(state is LoginSuccess)
         {
-          isLoading=false;
+
           print("success");
         }
         else if(state is LoginFailure)
         {
-          isLoading=false;
+
           emailController.text="";
           passwordController.text="";
           print("bad");
         }
       },
-        builder: (context,state)=> Scaffold(
+        builder: (context,state)=> obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
+        Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
