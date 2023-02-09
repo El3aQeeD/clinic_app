@@ -41,7 +41,7 @@ class SignUp extends StatelessWidget {
         child:
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-              child: customTextFiled(hintText:"Enter your Name" , label: const Text("Name",style: TextStyle(color: Colors.grey),), textcontroller: nameController, validatorFunc: (dynamic) {
+              child: customTextFiled(textInputType: TextInputType.name,hintText:"Enter your Name" , label: const Text("Name",style: TextStyle(color: Colors.grey),), textcontroller: nameController, validatorFunc: (dynamic) {
 
                  String val = nameController.text;
 
@@ -64,7 +64,7 @@ class SignUp extends StatelessWidget {
         child:
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-              child: customTextFiled(hintText:"Enter your Email" , label: const Text("Email",style: TextStyle(color: Colors.grey),), textcontroller: emailController, validatorFunc: (dynamic) {
+              child: customTextFiled(textInputType: TextInputType.emailAddress,hintText:"Enter your Email" , label: const Text("Email",style: TextStyle(color: Colors.grey),), textcontroller: emailController, validatorFunc: (dynamic) {
                 String val = emailController.text;
                 if(!val.contains("@"))
                   {
@@ -87,7 +87,7 @@ class SignUp extends StatelessWidget {
       key: formStatePassword,
       child: Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-        child: customTextFiled(hintText:"Enter your password" , label: const Text("Password",style: TextStyle(color: Colors.grey),), textcontroller: passwordController, validatorFunc: (dynamic) {
+        child: customTextFiled(textInputType: TextInputType.visiblePassword,hintText:"Enter your password" , label: const Text("Password",style: TextStyle(color: Colors.grey),), textcontroller: passwordController, validatorFunc: (dynamic) {
           String val = passwordController.text;
 
           if(val.length<4 && val.isNotEmpty)
@@ -109,12 +109,16 @@ class SignUp extends StatelessWidget {
       child:
       Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-        child: customTextFiled(hintText:"Enter your phone Number" , label: const Text("Phone number",style: TextStyle(color: Colors.grey),), textcontroller: phoneNumberController, validatorFunc: (dynamic) {
+        child: customTextFiled(textInputType: TextInputType.phone,hintText:"Enter your phone Number" , label: const Text("Phone number",style: TextStyle(color: Colors.grey),), textcontroller: phoneNumberController, validatorFunc: (dynamic) {
           String val = phoneNumberController.text;
 
           if(val.length<11 && val.isNotEmpty)
           {
             return "Input must be not less 11 number";
+          }
+          if(val.length>11 && val.isNotEmpty)
+          {
+            return "Input must be not greater than 11 number";
           }
           if(val.isEmpty){
             return "Input can not be empty";
