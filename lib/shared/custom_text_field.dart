@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget customTextFiled({required bool obscureText ,required TextInputType textInputType,required String hintText,required Widget label,required TextEditingController textcontroller ,required String? validatorFunc(dynamic)?  }){
 
   return TextFormField(
-    style: const TextStyle(color: Colors.black),
+    style: const TextStyle(color: Colors.black,letterSpacing: 0.5,fontSize: 18),
     validator: validatorFunc,
     controller: textcontroller,
     keyboardType:textInputType,
