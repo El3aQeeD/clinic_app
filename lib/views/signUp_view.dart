@@ -1,7 +1,10 @@
+import 'package:clinic_app/bloc/signUp_cubit/signUp_logic.dart';
+import 'package:clinic_app/bloc/signUp_cubit/signUp_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
 import 'package:clinic_app/views/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUp extends StatelessWidget {
 
@@ -121,7 +124,7 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  Widget button(){
+  Widget button(SignupCubit obj){
     return Center(
       child: Container(
         decoration: const BoxDecoration(
@@ -137,6 +140,7 @@ class SignUp extends StatelessWidget {
                 &&formStatePhone.currentState!.validate()
             )
             {
+              obj.checkSignUpState(email: emailController.text, password: passwordController.text, name: nameController.text, phoneNumber: phoneNumberController.text);
               print("innnnnn");
             }
             else
@@ -168,41 +172,66 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child:SafeArea(
-            child:Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                imageSection(),
-               const SizedBox(
-                  height: 20,
-                ),
-                signUpText('Sign up'),
-                const SizedBox(
-                  height: 20,
-                ),
-                formName(),
-                formEmail(),
-                formPassword(),
-                formPhone(),
-                const SizedBox(
-                  height: 10,
-                ),
-                InkWell(onTap: () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: button()),
-                const SizedBox(
-                  height: 8,
-                ),
-                footerText(),
+    var obj=SignupCubit.getObj(context);
+   return BlocConsumer<SignupCubit,SignUpState>(
+     listener:(context,state){
+       if(state is SignupLoading){
+         print("loading...");
 
-              ],
-            ) ,
-          ) ,
-        ),
-      ),
-    );
+
+       }
+       else if(state is SignupSuccess)
+       {
+         obj.isLoading=true;
+         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
+         print("success");
+       }
+       else if(state is SignupFailure)
+       {
+         nameController.text="";
+         phoneNumberController.text="";
+         emailController.text="";
+         passwordController.text="";
+         print("bad");
+       }
+     } ,
+     builder: (context,state)=> obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
+    Scaffold(
+    body: Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: SingleChildScrollView(
+    physics: const BouncingScrollPhysics(),
+    child:SafeArea(
+    child:Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    imageSection(),
+    const SizedBox(
+    height: 20,
+    ),
+    signUpText('Sign up'),
+    const SizedBox(
+    height: 20,
+    ),
+    formName(),
+    formEmail(),
+    formPassword(),
+    formPhone(),
+    const SizedBox(
+    height: 10,
+    ),
+    InkWell(onTap: () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: button(obj)),
+    const SizedBox(
+    height: 8,
+    ),
+    InkWell(onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: footerText()),
+
+    ],
+    ) ,
+    ) ,
+    ),
+    ),
+    )
+   );
   }
 }

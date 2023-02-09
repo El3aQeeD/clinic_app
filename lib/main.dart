@@ -4,6 +4,8 @@ import 'package:clinic_app/views/signUp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/signUp_cubit/signUp_logic.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,13 +16,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context)=>LoginCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Login(),
+    return MultiBlocProvider(providers: [
+        BlocProvider(
+        create: (context)=>LoginCubit(),
+        ),
+        BlocProvider(
+        create: (context)=>SignupCubit(),
       ),
-    );
+    ],
+        child:MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignUp(),
+    ));
+
   }
 }
 
