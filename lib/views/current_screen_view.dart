@@ -38,6 +38,7 @@ class CurrentScreen extends StatelessWidget {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
   var obj = CurrentScreenCubit.getObj(context);
@@ -47,9 +48,11 @@ class CurrentScreen extends StatelessWidget {
               bottomNavigationBar: BottomAppBar(
                 color: const Color(0xFF7558f0).withOpacity(.9),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     homeIcon(obj),
-                    profileIcon(obj)
+                    profileIcon(obj),
+
                   ],
                 ),
               ),
