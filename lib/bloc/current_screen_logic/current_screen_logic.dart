@@ -13,8 +13,8 @@ class CurrentScreenCubit extends Cubit<CurrentScreenState>{
   }
 
   List screens=[
-     const Home(),
-     const Profile(),
+      Home(),
+      Profile(),
   ];
 
   int index=0;
