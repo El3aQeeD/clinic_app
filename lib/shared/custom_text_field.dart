@@ -20,7 +20,6 @@ Widget customTextFiled({required bool obscureText ,required TextInputType textIn
             width: 3, color: MyColors.darkBlue),
       ),
 
-
       enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
             width: 3, color: Colors.grey),

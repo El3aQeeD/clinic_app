@@ -1,4 +1,7 @@
+import 'package:clinic_app/bloc/current_screen_logic/current_screen_logic.dart';
 import 'package:clinic_app/bloc/login_cubit/login_logic.dart';
+import 'package:clinic_app/views/current_screen_view.dart';
+import 'package:clinic_app/views/home_view.dart';
 import 'package:clinic_app/views/login_view.dart';
 import 'package:clinic_app/views/signUp_view.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +26,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
         create: (context)=>SignupCubit(),
       ),
+      BlocProvider(
+        create: (context)=>CurrentScreenCubit(),
+      ),
     ],
-        child:MaterialApp(
+        child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUp(),
+      home: Login(),
     ));
 
   }

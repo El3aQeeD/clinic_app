@@ -3,6 +3,7 @@ import 'package:clinic_app/bloc/login_cubit/login_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/repositories/user_data_repo/user_data_api.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
+import 'package:clinic_app/views/current_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -126,7 +127,7 @@ class Login extends StatelessWidget {
         }
         else if(state is LoginSuccess)
         {
-
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>CurrentScreen()));
           print("success");
         }
         else if(state is LoginFailure)

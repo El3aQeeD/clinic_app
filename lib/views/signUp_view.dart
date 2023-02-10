@@ -159,12 +159,13 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  Widget footerText(){
+  Widget footerText(BuildContext context){
     return  Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children:  [
           const Text("Joined us before?" , style: TextStyle(color: Colors.grey),),
           TextButton(onPressed: (){
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
             print("u should navigate to login screen here");
           },
               child: const Text("Login", style: TextStyle(color: MyColors.darkBlue),)
@@ -224,11 +225,11 @@ class SignUp extends StatelessWidget {
     const SizedBox(
     height: 10,
     ),
-    InkWell(onTap: () =>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: button(obj)),
+     button(obj),
     const SizedBox(
     height: 8,
     ),
-    InkWell(onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login())),child: footerText()),
+      footerText(context),
 
     ],
     ) ,
