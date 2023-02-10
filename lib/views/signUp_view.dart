@@ -103,6 +103,7 @@ class SignUp extends StatelessWidget {
     );
   }
 
+
   Widget formPhone(){
     return Form(
       key: formStatePhone,
@@ -219,6 +220,7 @@ class SignUp extends StatelessWidget {
     height: 20,
     ),
     formName(),
+
     formEmail(),
     formPassword(),
     formPhone(),
