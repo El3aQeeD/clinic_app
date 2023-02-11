@@ -6,6 +6,7 @@ import 'package:clinic_app/shared/helper_functions_validation.dart';
 import 'package:clinic_app/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUp extends StatelessWidget {
 
@@ -126,7 +127,10 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
         child: customTextFiled(obscureText: false,textInputType: TextInputType.phone,hintText:"Enter your phone Number" , label: const Text("Phone number",style: TextStyle(color: Colors.grey),), textcontroller: phoneNumberController, validatorFunc: (dynamic) {
           String val = phoneNumberController.text;
-
+          if(!isValidPhone(val))
+          {
+            return "Only numbers allowed";
+          }
           if(val.length<11 && val.isNotEmpty)
           {
             return "Input must be not less 11 number";
@@ -138,10 +142,7 @@ class SignUp extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
-          if(!isValidPhone(val))
-            {
-              return "Only numbers allowed";
-            }
+
           return null;
         } ),
       ),
@@ -151,8 +152,8 @@ class SignUp extends StatelessWidget {
   Widget button(SignupCubit obj){
     return Center(
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        decoration:  BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)).w,
           color: MyColors.darkBlue,
         ),
         child: Padding(
@@ -231,24 +232,24 @@ class SignUp extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
     imageSection(),
-    const SizedBox(
-    height: 20,
+     SizedBox(
+    height: 20.h,
     ),
     signUpText('Sign up'),
-    const SizedBox(
-    height: 20,
+     SizedBox(
+    height: 20.h,
     ),
     formName(),
 
     formEmail(),
     formPassword(),
     formPhone(),
-    const SizedBox(
-    height: 10,
+     SizedBox(
+    height: 10.h,
     ),
      button(obj),
-    const SizedBox(
-    height: 8,
+     SizedBox(
+    height: 8.h,
     ),
       footerText(context),
 

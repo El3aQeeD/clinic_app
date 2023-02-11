@@ -3,8 +3,11 @@ import 'package:clinic_app/bloc/login_cubit/login_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/repositories/user_data_repo/user_data_api.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
+import 'package:clinic_app/shared/helper_functions_validation.dart';
+import 'package:clinic_app/views/current_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Login extends StatelessWidget {
 
@@ -52,6 +55,10 @@ class Login extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
+          if(!isValidEmail(val))
+          {
+            return 'invalid email';
+          }
           return null;
         } ),
       ),
@@ -83,8 +90,8 @@ class Login extends StatelessWidget {
   Widget button(String buttonTxt ,LoginCubit obj){
     return Center(
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        decoration:  BoxDecoration(
+          borderRadius:const BorderRadius.all(Radius.circular(10)).w,
           color: MyColors.darkBlue,
         ),
         child: Padding(
@@ -130,7 +137,7 @@ class Login extends StatelessWidget {
         }
         else if(state is LoginSuccess)
         {
-
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>CurrentScreen()));
           print("success");
         }
         else if(state is LoginFailure)
@@ -152,23 +159,23 @@ class Login extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     imageSection(),
-                    const SizedBox(
-                      height: 20,
+                     SizedBox(
+                      height: 20.h,
                     ),
                     loginText('Login'),
-                    const SizedBox(
-                      height: 20,
+                     SizedBox(
+                      height: 20.h,
                     ),
 
                     formEmail(),
                     formPassword(),
 
-                    const SizedBox(
-                      height: 10,
+                     SizedBox(
+                      height: 10.h,
                     ),
-                    button("Login",obj),
-                    const SizedBox(
-                      height: 15,
+                    InkWell(onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>CurrentScreen())),child: button("Login",obj)),
+                     SizedBox(
+                      height: 15.h,
                     ),
 
 
