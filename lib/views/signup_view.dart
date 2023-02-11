@@ -32,9 +32,9 @@ class SignUp extends StatelessWidget {
   }
 
   Widget signUpText(String text){
-    return Text(text,style:const TextStyle(
+    return Text(text,style: TextStyle(
         color: Colors.black ,
-        fontSize: 40,
+        fontSize: 40.sp,
         fontWeight: FontWeight.bold),
     );
   }
@@ -173,7 +173,7 @@ class SignUp extends StatelessWidget {
               print("error");
             }
           },
-            child: const Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 16,)),
+            child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 16.sp,)),
           ),
         ),
       ),

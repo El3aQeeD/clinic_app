@@ -30,9 +30,9 @@ class Login extends StatelessWidget {
   }
 
   Widget loginText(String text){
-    return Text(text,style:const TextStyle(
+    return Text(text,style: TextStyle(
         color: Colors.black ,
-        fontSize: 40,
+        fontSize: 40.sp,
         fontWeight: FontWeight.bold),
     );
   }
@@ -112,7 +112,7 @@ class Login extends StatelessWidget {
               //print("error");
             }
           },
-            child: Text(buttonTxt ,style: const TextStyle(color: Colors.white,fontSize: 16,)),
+            child: Text(buttonTxt ,style:  TextStyle(color: Colors.white,fontSize: 16.sp,)),
           ),
         ),
       ),
