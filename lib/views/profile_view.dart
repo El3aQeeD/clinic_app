@@ -1,6 +1,7 @@
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constnats/my_colors.dart';
 
@@ -18,7 +19,7 @@ class Profile extends StatelessWidget {
         title:Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("profile details",style: TextStyle(color: Colors.black,fontSize: 18,fontFamily: 'ARIAL')),
+            Text("profile details",style: TextStyle(color: Colors.black,fontSize: 18.sp,fontFamily: 'ARIAL')),
           ],
         )
 
@@ -27,15 +28,15 @@ class Profile extends StatelessWidget {
         child: ListView(
           children: [
 
-            Container(height: 150,
-                child: Card( margin: const EdgeInsets.only(left: 40,right: 40,top: 30),
+            Container(height: 150.h,
+                child: Card( margin: const EdgeInsets.only(left: 40,right: 40,top: 30).r,
                   color: MyColors.navyBlue,
-                  shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),borderRadius: BorderRadius.circular(20.0), ),
+                  shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),borderRadius: BorderRadius.circular(20.0).w, ),
                   elevation: 0.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                    SizedBox(width: 30),  CircleAvatar(backgroundColor: Colors.white,radius: 40,),SizedBox(width: 20),
+                    SizedBox(width: 30.w),  CircleAvatar(backgroundColor: Colors.white,radius: 40.w,),SizedBox(width: 20.w),
                       Text("kessse morsy",style: TextStyle(fontSize: 20,fontFamily: 'ARIAL'),)
                       //Expanded(child: Container(height: 70,decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle),)),
                       //Expanded(child: ListTile(title: Text("Kesse mosry",style: TextStyle(fontSize: 20),)))

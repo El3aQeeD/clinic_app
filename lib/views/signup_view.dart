@@ -25,7 +25,7 @@ class SignUp extends StatelessWidget {
   Widget imageSection(){
     return  SizedBox(
       width: double.infinity,
-      height: 300,
+      height: 300.h,
       //color: Colors.red,
       child: Image.asset("images/doctors.jpg"),
     );
@@ -44,7 +44,7 @@ class SignUp extends StatelessWidget {
         key: formStateName,
         child:
             Padding(
-              padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+              padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
               child: customTextFiled(obscureText: false,textInputType: TextInputType.name,hintText:"Enter your Name" , label: const Text("Name",style: TextStyle(color: Colors.grey),), textcontroller: nameController, validatorFunc: (dynamic) {
 
                  String val = nameController.text;
@@ -72,7 +72,7 @@ class SignUp extends StatelessWidget {
         key: formStateEmail,
         child:
             Padding(
-              padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+              padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
               child: customTextFiled(obscureText: false,textInputType: TextInputType.emailAddress,hintText:"Enter your Email" , label: const Text("Email",style: TextStyle(color: Colors.grey),), textcontroller: emailController, validatorFunc: (dynamic) {
                 String val = emailController.text;
                 if(!val.contains("@"))
@@ -100,7 +100,7 @@ class SignUp extends StatelessWidget {
     return Form(
       key: formStatePassword,
       child: Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
         child: customTextFiled(obscureText: true,textInputType: TextInputType.visiblePassword,hintText:"Enter your password" , label: const Text("Password",style: TextStyle(color: Colors.grey),), textcontroller: passwordController, validatorFunc: (dynamic) {
           String val = passwordController.text;
 
@@ -124,7 +124,7 @@ class SignUp extends StatelessWidget {
       key: formStatePhone,
       child:
       Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
         child: customTextFiled(obscureText: false,textInputType: TextInputType.phone,hintText:"Enter your phone Number" , label: const Text("Phone number",style: TextStyle(color: Colors.grey),), textcontroller: phoneNumberController, validatorFunc: (dynamic) {
           String val = phoneNumberController.text;
           if(!isValidPhone(val))
@@ -173,7 +173,7 @@ class SignUp extends StatelessWidget {
               print("error");
             }
           },
-            child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 16.sp,)),
+            child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 15.sp,)),
           ),
         ),
       ),
@@ -224,7 +224,7 @@ class SignUp extends StatelessWidget {
      builder: (context,state)=> obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
     Scaffold(
     body: Padding(
-    padding: const EdgeInsets.all(10.0),
+    padding:  EdgeInsets.all(10.0).w,
     child: SingleChildScrollView(
     physics: const BouncingScrollPhysics(),
     child:SafeArea(

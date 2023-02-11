@@ -41,7 +41,7 @@ class Login extends StatelessWidget {
       key: formStateEmail,
       child:
       Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
         child: customTextFiled(obscureText: false,textInputType: TextInputType.text,hintText:"Enter your Email" , label: const Text("Email",style: TextStyle(color: Colors.grey),), textcontroller: emailController, validatorFunc: (dynamic) {
           String val = emailController.text;
           if(!val.contains("@"))
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
     return Form(
       key: formStatePassword,
       child: Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
+        padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
         child: customTextFiled(obscureText: true,textInputType: TextInputType.text,hintText:"Enter your password" , label: const Text("Password",style: TextStyle(color: Colors.grey),), textcontroller: passwordController, validatorFunc: (dynamic) {
           String val = passwordController.text;
 
