@@ -16,8 +16,14 @@ class ApiRequest{
   }
 
   static postRequest(String url,Map data)async{
-    await Future.delayed(Duration(milliseconds: 15));
-    var response= await http.post(Uri.parse(url),body: data) ;
+    await Future.delayed(const Duration(milliseconds: 15));
+    var response = await http.post(Uri.parse(url),body: data).timeout(
+      const Duration(seconds: 1),
+      onTimeout: (){
+         http.Response t = http.Response('Error',408);
+        return t;
+      }
+    );
     if(response.statusCode==200)
     {
       var body=jsonDecode(response.body);

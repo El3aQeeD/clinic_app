@@ -5,6 +5,7 @@ import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/repositories/home_data_repo/home_data_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
 
@@ -21,14 +22,14 @@ class Home extends StatelessWidget {
             color: MyColors.navyBlue
         ),
 
-        child:  const ListTile(
+        child:  ListTile(
           leading: CircleAvatar(
             foregroundColor: Colors.white,
-            radius: 30,
+            radius: 30.w,
             child:  Icon(Icons.account_circle,size:55,),
           ) ,
-          title: Text("Welcome back",style: TextStyle(fontSize: 18,color: Colors.grey ),),
-          subtitle: Text("3aQeedo",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+          title: Text("Welcome back",style: TextStyle(fontSize: 18.sp,color: Colors.grey ),),
+          subtitle: const  Text("3aQeedo",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         ),
       ),
     );
@@ -53,12 +54,12 @@ class Home extends StatelessWidget {
                   ),
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Center(child: Text(spe[i],style:const TextStyle(fontSize: 16,color: Colors.white,letterSpacing: 1)),
+                      child: Center(child: Text(spe[i],style: TextStyle(fontSize: 16.sp,color: Colors.white,letterSpacing: 1)),
                       )
                   ),
                 ),
 
-                const SizedBox(width: 10,)
+                 SizedBox(width: 10.w,)
               ],
             );
           } ),
@@ -78,8 +79,8 @@ class Home extends StatelessWidget {
           },
             child: Container(
 
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+              decoration:  BoxDecoration(
+                borderRadius:  BorderRadius.all(Radius.circular(30.w)),
                 color: MyColors.darkBlue
               ),
               child:  Column(
@@ -87,17 +88,15 @@ class Home extends StatelessWidget {
                 children: [
 
                   ClipRRect(
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)).w,
                     child: Image.network("$linkPhotosFolders/${obj.response[i].doctorImage}",alignment: Alignment.center,),
                   ),
-                  const SizedBox(height: 10,),
-                  Text("${obj.response[i].doctorName}"),
+                   SizedBox(height: 10.h,),
+                  Text("${obj.response[i].doctorName}",style: TextStyle(fontSize: 14.sp),),
 
-                  const SizedBox(height: 5,),
+                   SizedBox(height: 5.h,),
 
-                   Text("${obj.response[i].doctorAbout}",style:const  TextStyle(color: Colors.white,fontSize: 12),),
-                  const SizedBox(height: 5,),
-                  const Text("book now",style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
+                  Text("${obj.response[i].doctorSpecialty}",style: TextStyle(color: Colors.white,fontSize: 12.sp),),
 
                 ],
               ),
@@ -134,7 +133,8 @@ class Home extends StatelessWidget {
 
       },
       builder:(context,state)=> Scaffold(
-        body: obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
+        body: obj.noInternet == true ? Center(child: Image.asset("images/noConnection.jpg"),):
+        obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
         SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -146,13 +146,13 @@ class Home extends StatelessWidget {
                     physics:const BouncingScrollPhysics(),
                     children:  [
                       appBar(),
-                      const SizedBox(height: 20,),
-                      const Text("Specialties" , style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.bold),),
-                      const SizedBox(height: 20,),
+                      SizedBox(height: 20.h,),
+                      Text("Specialties" , style: TextStyle(fontSize: 24.sp ,fontWeight: FontWeight.bold),),
+                      SizedBox(height: 20.h,),
                       doctorSpecialties(),
-                      const SizedBox(height: 20,),
-                      const Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,)),
-                      const SizedBox(height: 20,),
+                      SizedBox(height: 20.h,),
+                      Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.h,)),
+                      SizedBox(height: 20.h,),
                       doctorsGrid(obj),
                     ],
                   ),

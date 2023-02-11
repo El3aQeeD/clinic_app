@@ -13,29 +13,21 @@ class HomeDataApi extends HomeDataRepository {
 
 
       List response = await ApiRequest.postRequest(linkHome,{});
-      print(response);
 
       if(response[0]['status'] != "fail") {
         homeDataList =
             response.map((homeData) => HomeData.fromJson(homeData)).toList();
 
-        print(homeDataList[0].doctorName);
-        print(homeDataList.length);
+
       }
       else
       {
-        print(homeDataList);
-        print(homeDataList.length);
-        print("Home Data Not found");
       }
 
     }catch(exception){
-
-      print(exception);
+        print(exception);
 
     }
-    print("home-data-api ##################");
-    print(homeDataList);
 
     return homeDataList;
 

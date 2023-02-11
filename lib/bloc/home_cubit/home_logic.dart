@@ -11,7 +11,7 @@ class HomeCubit extends Cubit<HomeState>{
   HomeCubit({this.homeDataRepository}):super(HomeInitial());
   late List<HomeData> response;
   bool isLoading=false;
-
+  bool noInternet = false;
 
 
    HomeCubit getObj(BuildContext context){
@@ -25,25 +25,20 @@ class HomeCubit extends Cubit<HomeState>{
     isLoading = true;
 
     response = await HomeDataApi().getHomeData();
-    print("response from repoooooo");
-    print(response);
-
-    print("herrhher");
 
     if(response.isNotEmpty){
 
-      print("suc");
 
       emit(HomeSuccess());
-
+      noInternet=false;
       isLoading=false;
+
     }
     else
     {
-      print("response empty");
 
       emit(HomeFailure());
-
+      noInternet = true;
       isLoading=false;
     }
 
