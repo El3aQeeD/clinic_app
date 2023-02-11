@@ -9,10 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Login extends StatelessWidget {
 
 
-  GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
-  GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
+  final GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
+  final GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
+  final TextEditingController emailController=TextEditingController();
+  final TextEditingController passwordController=TextEditingController();
+
+  Login({super.key});
 
 
   Widget imageSection(){
@@ -50,6 +52,7 @@ class Login extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
+          return null;
         } ),
       ),
     );
@@ -70,13 +73,14 @@ class Login extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
+          return null;
         } ),
       ),
 
     );
   }
 
-  Widget button(String ButtonTxt ,LoginCubit obj){
+  Widget button(String buttonTxt ,LoginCubit obj){
     return Center(
       child: Container(
         decoration: const BoxDecoration(
@@ -101,7 +105,7 @@ class Login extends StatelessWidget {
               //print("error");
             }
           },
-            child: Text(ButtonTxt ,style: TextStyle(color: Colors.white,fontSize: 16,)),
+            child: Text(buttonTxt ,style: const TextStyle(color: Colors.white,fontSize: 16,)),
           ),
         ),
       ),

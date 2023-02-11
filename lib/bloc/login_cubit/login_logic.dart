@@ -6,11 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState>{
 
+
+  UserDataRepository? userDataRepository;
   LoginCubit({this.userDataRepository}):super(LoginInitial());
   late List response;
   bool isLoading=false;
 
-  UserDataRepository? userDataRepository;
 
    LoginCubit getObj(BuildContext context){
     return  BlocProvider.of(context);

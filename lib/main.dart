@@ -3,7 +3,7 @@ import 'package:clinic_app/bloc/login_cubit/login_logic.dart';
 import 'package:clinic_app/views/current_screen_view.dart';
 import 'package:clinic_app/views/home_view.dart';
 import 'package:clinic_app/views/login_view.dart';
-import 'package:clinic_app/views/signUp_view.dart';
+import 'package:clinic_app/views/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     ],
         child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CurrentScreen(),
+      home: SignUp(),
     ));
 
   }

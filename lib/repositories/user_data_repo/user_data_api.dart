@@ -2,7 +2,6 @@ import 'package:clinic_app/api/api_links.dart';
 import 'package:clinic_app/api/api_requests.dart';
 import 'package:clinic_app/models/user_data.dart';
 import 'package:clinic_app/repositories/user_data_repo/user_data_repository.dart';
-import 'package:dio/dio.dart';
 
 class UserDataApi extends UserDataRepository{
   @override

@@ -2,21 +2,24 @@ import 'package:clinic_app/bloc/signUp_cubit/signUp_logic.dart';
 import 'package:clinic_app/bloc/signUp_cubit/signUp_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:clinic_app/shared/custom_text_field.dart';
+import 'package:clinic_app/shared/helper_functions_validation.dart';
 import 'package:clinic_app/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUp extends StatelessWidget {
 
-  GlobalKey<FormState> formStateName=GlobalKey<FormState>();
-  GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
-  GlobalKey<FormState> formStatePhone=GlobalKey<FormState>();
-  GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
+  final GlobalKey<FormState> formStateName=GlobalKey<FormState>();
+  final GlobalKey<FormState> formStateEmail=GlobalKey<FormState>();
+  final GlobalKey<FormState> formStatePhone=GlobalKey<FormState>();
+  final GlobalKey<FormState> formStatePassword=GlobalKey<FormState>();
 
-  TextEditingController nameController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController nameController=TextEditingController();
+  final TextEditingController emailController=TextEditingController();
+  final TextEditingController passwordController=TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+
+  SignUp({super.key});
 
   Widget imageSection(){
     return  SizedBox(
@@ -52,6 +55,11 @@ class SignUp extends StatelessWidget {
                   if(val.isEmpty){
                     return "Input can not be empty";
                   }
+                  if(!isValidName(val))
+                    {
+                      return 'Invalid Name';
+                    }
+                  return null;
 
               } ),
             ),
@@ -77,6 +85,11 @@ class SignUp extends StatelessWidget {
                 if(val.isEmpty){
                   return "Input can not be empty";
                 }
+                if(!isValidEmail(val))
+                  {
+                    return 'invalid email';
+                  }
+                return null;
               } ),
             ),
     );
@@ -97,6 +110,7 @@ class SignUp extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
+          return null;
         } ),
       ),
 
@@ -124,6 +138,11 @@ class SignUp extends StatelessWidget {
           if(val.isEmpty){
             return "Input can not be empty";
           }
+          if(!isValidPhone(val))
+            {
+              return "Only numbers allowed";
+            }
+          return null;
         } ),
       ),
     );

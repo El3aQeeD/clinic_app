@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class CurrentScreen extends StatelessWidget {
+  const CurrentScreen({super.key});
+
 
 
   Widget homeIcon(CurrentScreenCubit obj)

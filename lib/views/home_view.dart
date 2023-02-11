@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
 
-  List spe = ["Dermatologists","Cardiologists","Endocrinologists","Gastroenterologists","Internists","Neurologists"];
+  final List spe = ["Dermatologists","Cardiologists","Endocrinologists","Gastroenterologists","Internists","Neurologists"];
+
+   Home({super.key});
 
   Widget appBar(){
     return  Padding(
-      padding: EdgeInsets.all(8.0),
+      padding:const  EdgeInsets.all(8.0),
       child: Container(
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -85,7 +87,7 @@ class Home extends StatelessWidget {
                   const SizedBox(height: 10,),
                   const Text("Khaled Mostafa"),
 
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
 
                   const Text("3algniiii",style: TextStyle(color: Colors.white,fontSize: 12),),
                   const SizedBox(height: 5,),
@@ -104,7 +106,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -114,24 +115,20 @@ class Home extends StatelessWidget {
                   shrinkWrap: true,
                   physics:const BouncingScrollPhysics(),
                   children:  [
-                        appBar(),
-                       const SizedBox(height: 20,),
-                       const Text("Specialties" , style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.bold),),
-                       const SizedBox(height: 20,),
-                       doctorSpecialties(),
+                    appBar(),
                     const SizedBox(height: 20,),
-                      const Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,)),
-                      const SizedBox(height: 20,),
-                      doctorsGrid(),
-
-
+                    const Text("Specialties" , style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 20,),
+                    doctorSpecialties(),
+                    const SizedBox(height: 20,),
+                    const Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,)),
+                    const SizedBox(height: 20,),
+                    doctorsGrid(),
                   ],
                 ),
               ),
             ),
           ),
-
-
     );
   }
 }
