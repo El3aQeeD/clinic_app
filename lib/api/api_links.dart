@@ -1,5 +1,7 @@
 const String linkServer="http://10.0.2.2/Clinic_App_Backend";
-const String linkPhotosFolders="http://10.0.2.2/api/upload";
+const String linkPhotosFolders="http://10.0.2.2/Clinic_App_Backend/upload";
 //auth
 const String linkSignup="$linkServer/auth/signUp.php";
 const String linkLogin="$linkServer/auth/login.php";
+//home
+const String linkHome="$linkServer/home_page/view_doctor.php";

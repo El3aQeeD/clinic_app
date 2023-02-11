@@ -1,4 +1,5 @@
-import 'package:clinic_app/bloc/current_screen_logic/current_screen_logic.dart';
+import 'package:clinic_app/bloc/current_screen_cubit/current_screen_logic.dart';
+import 'package:clinic_app/bloc/home_cubit/home_logic.dart';
 import 'package:clinic_app/bloc/login_cubit/login_logic.dart';
 import 'package:clinic_app/views/current_screen_view.dart';
 import 'package:clinic_app/views/home_view.dart';
@@ -35,10 +36,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context)=>CurrentScreenCubit(),
         ),
+        BlocProvider(
+          create: (context)=>HomeCubit(),
+        ),
       ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: SignUp(),
+            home: Home(),
           ));  },
     );
   }

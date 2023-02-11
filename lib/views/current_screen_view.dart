@@ -1,8 +1,10 @@
-import 'package:clinic_app/bloc/current_screen_logic/current_screen_logic.dart';
-import 'package:clinic_app/bloc/current_screen_logic/current_screen_state.dart';
+
+import 'package:clinic_app/bloc/current_screen_cubit/current_screen_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/current_screen_cubit/current_screen_logic.dart';
 
 
 class CurrentScreen extends StatelessWidget {

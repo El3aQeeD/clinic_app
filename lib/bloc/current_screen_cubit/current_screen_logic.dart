@@ -1,4 +1,5 @@
-import 'package:clinic_app/bloc/current_screen_logic/current_screen_state.dart';
+
+import 'package:clinic_app/bloc/current_screen_cubit/current_screen_state.dart';
 import 'package:clinic_app/views/home_view.dart';
 import 'package:clinic_app/views/profile_view.dart';
 import 'package:flutter/material.dart';

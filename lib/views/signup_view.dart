@@ -25,7 +25,7 @@ class SignUp extends StatelessWidget {
   Widget imageSection(){
     return  SizedBox(
       width: double.infinity,
-      height: 300,
+      height: 300.h,
       //color: Colors.red,
       child: Image.asset("images/doctors.jpg"),
     );
@@ -173,7 +173,7 @@ class SignUp extends StatelessWidget {
               print("error");
             }
           },
-            child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 16.sp,)),
+            child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 15.sp,)),
           ),
         ),
       ),

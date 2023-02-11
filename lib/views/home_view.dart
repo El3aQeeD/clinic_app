@@ -1,5 +1,10 @@
+import 'package:clinic_app/api/api_links.dart';
+import 'package:clinic_app/bloc/home_cubit/home_logic.dart';
+import 'package:clinic_app/bloc/home_cubit/home_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
+import 'package:clinic_app/repositories/home_data_repo/home_data_api.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatelessWidget {
 
@@ -60,15 +65,16 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget doctorsGrid(){
+  Widget doctorsGrid(HomeCubit obj){
     return GridView.builder(
-        itemCount: spe.length,
+        itemCount: obj.response.length,
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 10,childAspectRatio: 100 / 110 ),
         itemBuilder: (context,i){
           return  InkWell(onTap: (){
             //Navigator.of(context).push(MaterialPageRoute(builder: (context){}));
+          print(obj.response[i].doctorId);
           },
             child: Container(
 
@@ -82,14 +88,14 @@ class Home extends StatelessWidget {
 
                   ClipRRect(
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-                    child: Image.asset("images/doctorLogo.jpg",alignment: Alignment.center,),
+                    child: Image.network("$linkPhotosFolders/${obj.response[i].doctorImage}",alignment: Alignment.center,),
                   ),
                   const SizedBox(height: 10,),
-                  const Text("Khaled Mostafa"),
+                  Text("${obj.response[i].doctorName}"),
 
                   const SizedBox(height: 5,),
 
-                  const Text("3algniiii",style: TextStyle(color: Colors.white,fontSize: 12),),
+                   Text("${obj.response[i].doctorAbout}",style:const  TextStyle(color: Colors.white,fontSize: 12),),
                   const SizedBox(height: 5,),
                   const Text("book now",style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
 
@@ -104,31 +110,56 @@ class Home extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height:  MediaQuery.of(context).size.height,
-                color: Colors.white,
-                child: ListView(
-                  shrinkWrap: true,
-                  physics:const BouncingScrollPhysics(),
-                  children:  [
-                    appBar(),
-                    const SizedBox(height: 20,),
-                    const Text("Specialties" , style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.bold),),
-                    const SizedBox(height: 20,),
-                    doctorSpecialties(),
-                    const SizedBox(height: 20,),
-                    const Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,)),
-                    const SizedBox(height: 20,),
-                    doctorsGrid(),
-                  ],
+    var obj = HomeCubit(homeDataRepository: HomeDataApi()).getObj(context);
+    obj.checkHomeState();
+
+    return BlocConsumer<HomeCubit,HomeState>(
+      listener:(context,state){
+        if (state is HomeLoading)
+          {
+            print("home loading");
+          }
+        else if (state is HomeSuccess)
+            {
+              print("home success");
+            }
+        else if (state is HomeFailure)
+              {
+                print("home fail");
+              }
+        else
+          {
+            print("error in bloc");
+          }
+
+      },
+      builder:(context,state)=> Scaffold(
+        body: obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
+        SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height:  MediaQuery.of(context).size.height,
+                  color: Colors.white,
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics:const BouncingScrollPhysics(),
+                    children:  [
+                      appBar(),
+                      const SizedBox(height: 20,),
+                      const Text("Specialties" , style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.bold),),
+                      const SizedBox(height: 20,),
+                      doctorSpecialties(),
+                      const SizedBox(height: 20,),
+                      const Text("Doctors profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,)),
+                      const SizedBox(height: 20,),
+                      doctorsGrid(obj),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+      ),
     );
   }
 }
