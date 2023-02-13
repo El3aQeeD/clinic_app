@@ -1,5 +1,6 @@
 
 import 'package:clinic_app/bloc/current_screen_cubit/current_screen_state.dart';
+import 'package:clinic_app/views/appointment_view.dart';
 import 'package:clinic_app/views/home_view.dart';
 import 'package:clinic_app/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,14 @@ class CurrentScreenCubit extends Cubit<CurrentScreenState>{
 
   List screens=[
       Home(),
+      Appointment(),
       Profile(),
   ];
 
   int index=0;
   Color colorHome= Colors.white;
   Color colorProfile= Colors.black;
+  Color colorAppointment = Colors.black;
 
   homeCurrentScreen()
   {
@@ -32,17 +35,30 @@ class CurrentScreenCubit extends Cubit<CurrentScreenState>{
     emit(CurrentScreenHome());
   }
 
+  appointmentCurrentScreen(){
+
+    index =1;
+
+    colorAppointment= Colors.white;
+    colorHome= Colors.black;
+    colorProfile= Colors.black;
+
+
+    emit(CurrentScreenAppointment());
+
+  }
+
   profileCurrentScreen()
   {
 
-      index=1;
-     colorHome= Colors.black;
-     colorProfile= Colors.white;
+    index=2;
+    colorHome= Colors.black;
+    colorAppointment = Colors.black;
+    colorProfile= Colors.white;
 
     emit(CurrentScreenProfile());
 
   }
-
 
 
 }

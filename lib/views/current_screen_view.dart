@@ -42,6 +42,23 @@ class CurrentScreen extends StatelessWidget {
       );
   }
 
+  Widget appointmentIcon(CurrentScreenCubit obj)
+  {
+    return MaterialButton(onPressed: (){
+      obj.appointmentCurrentScreen();
+    },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.add_circle_outline_rounded,color: obj.colorAppointment,),
+          Text("Appointment",style: TextStyle(color: obj.colorAppointment),),
+        ],
+      ),
+    );
+  }
+
+
+
 
 
   @override
@@ -56,6 +73,7 @@ class CurrentScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     homeIcon(obj),
+                    appointmentIcon(obj),
                     profileIcon(obj),
                   ],
                 ),
