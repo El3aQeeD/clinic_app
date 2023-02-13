@@ -15,7 +15,8 @@ class Appointment extends StatelessWidget {
           backgroundColor: MyColors.darkBlue,
         ),
         body: ListView.builder(
-            itemCount: 1,
+          physics: BouncingScrollPhysics(),
+            itemCount: 8,
             itemBuilder: (context, i) {
               return Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -61,9 +62,9 @@ class Appointment extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Doctor"),
-                                  Text("Dr. Khaled Mostafa"),
-                                  SizedBox(
+                                  const Text("Doctor"),
+                                  const Text("Dr. Khaled Mostafa"),
+                                  const SizedBox(
                                     height: 8,
                                   ),
                                   Container(
@@ -76,7 +77,7 @@ class Appointment extends StatelessWidget {
                                           horizontal: 24),
                                       child: TextButton(
                                         onPressed: () {},
-                                        child: Text(
+                                        child: const Text(
                                           "Cancel",
                                           style: TextStyle(color: Colors.white),
                                         ),

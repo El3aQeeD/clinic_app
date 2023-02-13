@@ -30,6 +30,7 @@ class CurrentScreenCubit extends Cubit<CurrentScreenState>{
 
      index=0;
      colorHome= Colors.white;
+     colorAppointment = Colors.black;
      colorProfile= Colors.black;
 
     emit(CurrentScreenHome());
