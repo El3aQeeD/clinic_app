@@ -1,8 +1,10 @@
-import 'package:clinic_app/bloc/current_screen_cubit/current_screen_logic.dart';
+
+import 'package:clinic_app/bloc/doctor_profile_cubit/doctor_profile_logic.dart';
 import 'package:clinic_app/bloc/home_cubit/home_logic.dart';
 import 'package:clinic_app/bloc/login_cubit/login_logic.dart';
 import 'package:clinic_app/views/appointment_view.dart';
 import 'package:clinic_app/views/current_screen_view.dart';
+import 'package:clinic_app/views/doctor_profile_view.dart';
 import 'package:clinic_app/views/home_view.dart';
 import 'package:clinic_app/views/login_view.dart';
 import 'package:clinic_app/views/signup_view.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'bloc/current_screen_cubit/current_screen_logic.dart';
 import 'bloc/signUp_cubit/signUp_logic.dart';
 
 void main() {
@@ -39,6 +42,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context)=>HomeCubit(),
+        ),
+        BlocProvider(
+          create: (context)=>DoctorProfileCubit(),
         ),
       ],
           child: MaterialApp(

@@ -5,3 +5,5 @@ const String linkSignup="$linkServer/auth/signUp.php";
 const String linkLogin="$linkServer/auth/login.php";
 //home
 const String linkHome="$linkServer/home_page/view_doctor.php";
+//
+const String linkDoctorDetails="$linkServer/doctor_details_page/view.php";

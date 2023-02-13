@@ -173,7 +173,7 @@ class Login extends StatelessWidget {
                      SizedBox(
                       height: 10.h,
                     ),
-                    InkWell(onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>CurrentScreen())),child: button("Login",obj)),
+                    button("Login",obj),
                      SizedBox(
                       height: 15.h,
                     ),

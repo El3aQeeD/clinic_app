@@ -26,6 +26,7 @@ class HomeCubit extends Cubit<HomeState>{
 
     response = await HomeDataApi().getHomeData();
 
+
     if(response.isNotEmpty){
 
 

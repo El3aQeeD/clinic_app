@@ -2,7 +2,7 @@
 import 'package:clinic_app/bloc/current_screen_cubit/current_screen_state.dart';
 import 'package:clinic_app/views/appointment_view.dart';
 import 'package:clinic_app/views/home_view.dart';
-import 'package:clinic_app/views/profile_view.dart';
+import 'package:clinic_app/views/doctor_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +17,7 @@ class CurrentScreenCubit extends Cubit<CurrentScreenState>{
   List screens=[
       Home(),
       Appointment(),
-      Profile(),
+      DoctorProfile(doctor_id: '1',),
   ];
 
   int index=0;
