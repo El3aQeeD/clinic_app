@@ -1,0 +1,5 @@
+abstract class AppointmentScreenState{}
+class AppointmentScreenLoading extends AppointmentScreenState{}
+class AppointmentScreenSuccess extends AppointmentScreenState{}
+class AppointmentScreenFailure extends AppointmentScreenState{}
+class AppointmentScreenInitial extends AppointmentScreenState{}

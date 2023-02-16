@@ -1,5 +1,6 @@
 import 'package:clinic_app/bloc/doctor_profile_cubit/doctor_profile_state.dart';
 import 'package:clinic_app/models/doctor_data.dart';
+import 'package:clinic_app/models/doctor_schedule.dart';
 import 'package:clinic_app/repositories/doctor_profile_data_repo/doctor_profile_data_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,7 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState>{
   DoctorProfileRepository? doctorProfileRepository;
   DoctorProfileCubit({this.doctorProfileRepository}):super(DoctorProfileInitial());
   late List<DoctorData> response;
-  late List response2;
+  late List<DoctorSchedule> response2;
   bool isLoading=false;
 
   DoctorProfileCubit getObj(BuildContext context){
@@ -24,6 +25,7 @@ Future <void> checkDoctorProfileState({required String id})async{
     if(response.isNotEmpty)
       {
         print("ohhhhh");
+        response2=await DoctorProfileApi().getDoctorSchedule(id: id);
         emit(DoctorProfileSuccess());
         isLoading=false;
         print(response[0].doctorName);
@@ -32,6 +34,10 @@ Future <void> checkDoctorProfileState({required String id})async{
       emit(DoctorProfileFailure());
       isLoading=false;
     }
+}
+Future<void> getSchedule({required String id})async{
+  response2=await DoctorProfileApi().getDoctorSchedule(id: id);
+  print(response2[0].dayName);
 }
 
 
