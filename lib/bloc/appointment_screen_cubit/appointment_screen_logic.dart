@@ -35,14 +35,18 @@ class AppointmentScreenCubit extends Cubit<AppointmentScreenState> {
 
   }
 
-  Future deleteFromAppointment({required var id}) async{
-     deleteResponse = await AppointmentDataSqlite().deleteAppointmentData(id: id);
+  Future deleteFromAppointment({required int id}) async{
+     deleteResponse = await AppointmentDataSqlite().deleteAppointmentData(id: response[id].id);
      print("******************");
      print(deleteResponse);
     if(deleteResponse == 1){
       deleteResponse=1;
-      response.removeAt(int.parse(id));
-      emit(AppointmentDeletedSuccess());
+      response.removeAt(id);
+      if(response.isEmpty){
+        emit(AppointmentScreenEmpty());
+      }else{
+        emit(AppointmentDeletedSuccess());
+      }
     }
     else
     {
