@@ -15,7 +15,7 @@ class AppointmentData {
     doctorName = json['doctor_name'].toString();
     doctorSpecialty = json['doctor_specialty'].toString();
     time = json['Time'].toString();
-    data = json['Date'].toString();
+    data = json['Data'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -24,7 +24,7 @@ class AppointmentData {
     data['doctorName'] = doctorName;
     data['doctorSpecialty'] = doctorSpecialty;
     data['Time'] = time;
-    data['Date'] = data;
+    data['Date'] = this.data;
     return data;
   }
 }

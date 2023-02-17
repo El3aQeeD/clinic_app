@@ -118,8 +118,8 @@ class Appointment extends StatelessWidget {
                                           child: TextButton(
                                             onPressed: () {
                                               print("======");
-                                              print(obj.response[i].id);
-                                              obj.deleteFromAppointment(id: obj.response[i].id);
+                                              print(obj.response[i]);
+                                              obj.deleteFromAppointment(id: i);
 
                                             },
                                             child: const Text(
