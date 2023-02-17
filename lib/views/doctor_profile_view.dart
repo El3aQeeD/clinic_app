@@ -177,7 +177,7 @@ class DoctorProfile extends StatelessWidget {
                                         for(var day in obj.response2 )
 
                                             MaterialButton(onPressed: () async{
-                                              String time = '${appointment("${day.startTime}",30*i).hour}:${appointment("${day.startTime}",30*i).minute}';
+                                              String time = "${DateFormat.Hm().format(appointment("${day.startTime}",30*i))}PM";
                                               String year = '${t.year}-${t.month}-${t.day}';
                                               print(year);
                                               print(time);
