@@ -14,9 +14,9 @@ class DoctorProfile extends StatelessWidget {
   final String doctor_id;
   List<String>?l;
   int k=0;
-  DateTime appointment(String Time,int duration){
+  DateTime appointment(String time,int duration){
 
-    var moonLanding = DateTime.parse(Time) ;
+    var moonLanding = DateTime.parse(time) ;
 
     print(moonLanding.runtimeType);
     print(moonLanding.hour);
@@ -25,7 +25,7 @@ class DoctorProfile extends StatelessWidget {
     if(moonLanding.hour>12)
     {
       moonLanding=moonLanding.add(Duration(hours: 12));
-      Time=moonLanding.toString();
+      time=moonLanding.toString();
       return moonLanding;
     }
     else{
@@ -38,6 +38,22 @@ class DoctorProfile extends StatelessWidget {
     int diff=int.parse(end)-int.parse(start);
     return diff*2;
   }
+
+  void _show(BuildContext ctx,String text) {
+    showModalBottomSheet(
+        elevation: 10,
+        backgroundColor: Colors.red.withOpacity(0.5),
+        context: ctx,
+        builder: (ctx) => Container(
+          width: 300,
+          height: 50,
+          color: Colors.green.shade100,
+          alignment: Alignment.center,
+          child: Text(text,style: TextStyle(color: Colors.black),),
+        ));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -160,10 +176,23 @@ class DoctorProfile extends StatelessWidget {
                                       children: <Widget>[
                                         for(var day in obj.response2 )
 
-                                            MaterialButton(onPressed: () {  },minWidth: 108.w,color: Colors.grey.shade100,elevation: 0,
+                                            MaterialButton(onPressed: () async{
+                                              String time = '${appointment("${day.startTime}",30*i).hour}:${appointment("${day.startTime}",30*i).minute}';
+                                              String year = '${t.year}-${t.month}-${t.day}';
+                                              print(year);
+                                              print(time);
+                                              int resp =await obj.checkAppointmentState(obj.response[0].doctorName.toString(), obj.response[0].doctorSpecialty.toString(),year,time);
+                                              if(resp > 0)
+                                                {
+                                                  _show(context, "Done");
+                                                }
+                                              else
+                                                {
+                                                  _show(context, "problemoo");
+                                                }
+
+                                            },minWidth: 108.w,color: Colors.grey.shade100,elevation: 0,
                                                 child: Text("${DateFormat.Hm().format(appointment("${day.startTime}",30*i))}PM",style: TextStyle(color: Colors.black,fontSize: 18.sp),)),
-
-
 
                                       ],
                                     ),

@@ -57,10 +57,6 @@ class CurrentScreen extends StatelessWidget {
     );
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
   var obj = CurrentScreenCubit.getObj(context);

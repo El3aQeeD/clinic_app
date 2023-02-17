@@ -135,7 +135,8 @@ class Home extends StatelessWidget {
 
       },
       builder:(context,state)=> Scaffold(
-        body: obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
+        body: obj.noInternet == true ? Center(child: Image.asset("images/noConnection.jpg"),):
+        obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
