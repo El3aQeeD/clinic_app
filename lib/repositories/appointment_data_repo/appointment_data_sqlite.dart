@@ -1,3 +1,4 @@
+import 'package:clinic_app/main.dart';
 import 'package:clinic_app/models/appointment_data.dart';
 import 'package:clinic_app/repositories/appointment_data_repo/appointment_data.dart';
 import 'package:clinic_app/sqlite/crud.dart';
@@ -11,7 +12,7 @@ class AppointmentDataSqlite extends AppointmentDataRepository{
     try {
 
 
-      List response = await SqliteDB().readData("select * from 'appointment'")  ;
+      List response = await SqliteDB().readData("select * from 'appointment' where user_id=${sharedPref.get('userId')}")  ;
       print(response);
       if(response.isNotEmpty) {
         appointmentDataList =
@@ -34,7 +35,7 @@ class AppointmentDataSqlite extends AppointmentDataRepository{
   @override
   Future<int> insertAppointmentData({required var doctorName, required var doctorSpecialty , required var data,required var time }) async{
 
-    int appointmentResponse = await SqliteDB().insertData("INSERT INTO 'appointment'('doctor_name','doctor_specialty','Data','Time') VALUES('${doctorName}','${doctorSpecialty}','${data}','${time}')");
+    int appointmentResponse = await SqliteDB().insertData("INSERT INTO 'appointment'('doctor_name','user_id','doctor_specialty','Data','Time') VALUES('${doctorName}','${sharedPref.get('userId')}','${doctorSpecialty}','${data}','${time}')");
 
     return appointmentResponse;
   }

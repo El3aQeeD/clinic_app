@@ -127,13 +127,9 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20).r,
         child: customTextFiled(obscureText: false,textInputType: TextInputType.phone,hintText:"Enter your phone Number" , label: const Text("Phone number",style: TextStyle(color: Colors.grey),), textcontroller: phoneNumberController, validatorFunc: (dynamic) {
           String val = phoneNumberController.text;
-          if(!isValidPhone(val))
-          {
-            return "Only numbers allowed";
-          }
           if(val.length<11 && val.isNotEmpty)
           {
-            return "Input must be not less 11 number";
+            return "Input must be not less than 11 number";
           }
           if(val.length>11 && val.isNotEmpty)
           {
@@ -141,6 +137,10 @@ class SignUp extends StatelessWidget {
           }
           if(val.isEmpty){
             return "Input can not be empty";
+          }
+          if(!isValidPhone(val))
+          {
+            return "Only numbers allowed";
           }
 
           return null;
@@ -166,11 +166,9 @@ class SignUp extends StatelessWidget {
             )
             {
               obj.checkSignUpState(email: emailController.text, password: passwordController.text, name: nameController.text, phoneNumber: phoneNumberController.text);
-              print("innnnnn");
             }
             else
             {
-              print("error");
             }
           },
             child:  Text("Create Account",style: TextStyle(color: Colors.white,fontSize: 15.sp,)),
@@ -187,7 +185,6 @@ class SignUp extends StatelessWidget {
           const Text("Joined us before?" , style: TextStyle(color: Colors.grey),),
           TextButton(onPressed: (){
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
-            print("u should navigate to login screen here");
           },
               child: const Text("Login", style: TextStyle(color: MyColors.darkBlue),)
           ),
@@ -202,7 +199,6 @@ class SignUp extends StatelessWidget {
    return BlocConsumer<SignupCubit,SignUpState>(
      listener:(context,state){
        if(state is SignupLoading){
-         print("loading...");
 
 
        }
@@ -210,7 +206,6 @@ class SignUp extends StatelessWidget {
        {
          obj.isLoading=true;
          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
-         print("success");
        }
        else if(state is SignupFailure)
        {
@@ -218,13 +213,12 @@ class SignUp extends StatelessWidget {
          phoneNumberController.text="";
          emailController.text="";
          passwordController.text="";
-         print("bad");
        }
      } ,
      builder: (context,state)=> obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :
     Scaffold(
     body: Padding(
-    padding:  EdgeInsets.all(10.0).w,
+    padding:  const EdgeInsets.all(10.0).r,
     child: SingleChildScrollView(
     physics: const BouncingScrollPhysics(),
     child:SafeArea(

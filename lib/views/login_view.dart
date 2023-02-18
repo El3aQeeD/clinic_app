@@ -102,10 +102,7 @@ class Login extends StatelessWidget {
                 &&formStatePassword.currentState!.validate()
             )
             {
-
                 obj.checkLoginState(email: emailController.text, password: passwordController.text);
-
-              print("in");
             }
             else
             {
@@ -131,21 +128,15 @@ class Login extends StatelessWidget {
        BlocConsumer<LoginCubit,LoginState>(
         listener: (context,state){
         if(state is LoginLoading){
-          print("loading...");
-          
-
         }
         else if(state is LoginSuccess)
         {
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>CurrentScreen()));
-          print("success");
         }
         else if(state is LoginFailure)
         {
-
           emailController.text="";
           passwordController.text="";
-          print("bad");
         }
       },
         builder: (context,state)=> obj.isLoading == true ? const Center(child: CircularProgressIndicator(),) :

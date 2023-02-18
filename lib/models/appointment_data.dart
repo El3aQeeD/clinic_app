@@ -5,6 +5,7 @@ class AppointmentData {
   String? doctorSpecialty;
   String? time;
   String? data;
+  String? userId;
 
 
   AppointmentData(
@@ -12,6 +13,7 @@ class AppointmentData {
 
   AppointmentData.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
+    userId = json['user_id'].toString();
     doctorName = json['doctor_name'].toString();
     doctorSpecialty = json['doctor_specialty'].toString();
     time = json['Time'].toString();
@@ -21,6 +23,7 @@ class AppointmentData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = id;
+    data['user_id'] = userId;
     data['doctorName'] = doctorName;
     data['doctorSpecialty'] = doctorSpecialty;
     data['Time'] = time;

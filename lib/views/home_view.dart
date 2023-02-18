@@ -2,6 +2,7 @@ import 'package:clinic_app/api/api_links.dart';
 import 'package:clinic_app/bloc/home_cubit/home_logic.dart';
 import 'package:clinic_app/bloc/home_cubit/home_state.dart';
 import 'package:clinic_app/constnats/my_colors.dart';
+import 'package:clinic_app/main.dart';
 import 'package:clinic_app/repositories/home_data_repo/home_data_api.dart';
 import 'package:clinic_app/views/doctor_profile_view.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,14 @@ class Home extends StatelessWidget {
             color: MyColors.navyBlue
         ),
 
-        child:  const ListTile(
-          leading: CircleAvatar(
+        child:   ListTile(
+          leading: const CircleAvatar(
             foregroundColor: Colors.white,
             radius: 30,
             child:  Icon(Icons.account_circle,size:55,),
           ) ,
-          title: Text("Welcome back",style: TextStyle(fontSize: 18,color: Colors.grey ),),
-          subtitle: Text("3aQeedo",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+          title: const  Text("Welcome back",style: TextStyle(fontSize: 18,color: Colors.grey ),),
+          subtitle: Text(sharedPref.get('userName').toString(),style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         ),
       ),
     );

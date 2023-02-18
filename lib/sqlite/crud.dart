@@ -44,6 +44,7 @@ class SqliteDB{
     await db.execute('''
       CREATE TABLE "appointment" (
       "id" integer primary key,
+      "user_id" integer not null,
       "doctor_name" text not null,
       "doctor_specialty" text not null,
       "Data" text not null,

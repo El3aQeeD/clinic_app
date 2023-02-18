@@ -52,7 +52,6 @@ Future<void> getSchedule({required String id})async{
       return appointmentResponse;
     }else
     {
-      print("a7aa nish");
       return appointmentResponse;
     }
   }
