@@ -9,3 +9,5 @@ const String linkHome="$linkServer/home_page/view_doctor.php";
 const String linkDoctorDetails="$linkServer/doctor_details_page/view.php";
 //doctor schedule
 const String linkDoctorSchedule="$linkServer/doctor_schedule/view.php";
+//update user
+const String linkEditUser="$linkServer/user_profile/update.php";

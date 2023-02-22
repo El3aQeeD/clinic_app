@@ -102,10 +102,9 @@ class DoctorProfile extends StatelessWidget {
                     height: 10.h,
                   ),
                   Container(
-                      height: diff("${appointment("${obj.response2[0].startTime}",0).hour}", "${appointment("${obj.response2[0].endTime}",0).hour}")>5?(height).h:((height-height/6)).h ,
+                      height: diff("${appointment("${obj.response2[0].startTime}",0).hour}", "${appointment("${obj.response2[0].endTime}",0).hour}")>5?(height+20*diff("${appointment("${obj.response2[0].startTime}",0).hour}", "${appointment("${obj.response2[0].endTime}",0).hour}")).h:((height-height/6)).h ,
                       child: Stack(
                         children: [
-
                           Positioned(
                             bottom: 0,
                             left: 0,
@@ -119,7 +118,6 @@ class DoctorProfile extends StatelessWidget {
                               ),
                               child: Column(
                                 children: <Widget>[
-
                                   SizedBox(
                                     height: 80.h,
                                   ),
@@ -170,12 +168,10 @@ class DoctorProfile extends StatelessWidget {
                                   SizedBox(
                                     height: 15.h,
                                   ),
-
                                   for(int i=0;i<diff("${appointment("${obj.response2[0].startTime}",0).hour}", "${appointment("${obj.response2[0].endTime}",0).hour}");i++)
                                     Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: <Widget>[
                                         for(var day in obj.response2 )
-
                                             MaterialButton(onPressed: () async{
                                               String time = "${DateFormat.Hm().format(appointment("${day.startTime}",30*i))}PM";
                                               String year = '${t.year}-${t.month}-${t.day}';
@@ -193,7 +189,6 @@ class DoctorProfile extends StatelessWidget {
 
                                             },minWidth: 108.w,color: Colors.grey.shade100,elevation: 0,
                                                 child: Text("${DateFormat.Hm().format(appointment("${day.startTime}",30*i))}PM",style: TextStyle(color: Colors.black,fontSize: 18.sp),)),
-
                                       ],
                                     ),
                                 ],
