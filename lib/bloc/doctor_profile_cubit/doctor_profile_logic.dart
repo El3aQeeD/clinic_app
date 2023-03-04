@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/repositories/doctor_profile_data_repo/doctor_profile_data_repository.dart';
 
 
-
 class DoctorProfileCubit extends Cubit<DoctorProfileState>{
   DoctorProfileRepository? doctorProfileRepository;
   DoctorProfileCubit({this.doctorProfileRepository}):super(DoctorProfileInitial());
@@ -55,8 +54,6 @@ Future<void> getSchedule({required String id})async{
       return appointmentResponse;
     }
   }
-
-
 }
 
 

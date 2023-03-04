@@ -11,13 +11,11 @@ class HomeDataApi extends HomeDataRepository {
     List<HomeData> homeDataList = [];
     try {
 
-
       List response = await ApiRequest.postRequest(linkHome,{});
-
+      print(response);
       if(response[0]['status'] != "fail") {
         homeDataList =
             response.map((homeData) => HomeData.fromJson(homeData)).toList();
-
 
       }
       else
@@ -28,7 +26,7 @@ class HomeDataApi extends HomeDataRepository {
         print(exception);
 
     }
-
+    print(homeDataList);
     return homeDataList;
 
   }

@@ -90,7 +90,8 @@ class Home extends StatelessWidget {
 
                   ClipRRect(
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-                    child: Image.network("$linkPhotosFolders/${obj.response[i].doctorImage}",alignment: Alignment.center,),
+                    child: obj.offlineData == true ? obj.offlineImage :
+                    Image.network("$linkPhotosFolders/${obj.response[i].doctorImage}",alignment: Alignment.center,),
                   ),
                   const SizedBox(height: 10,),
                   Text("${obj.response[i].doctorName}"),
